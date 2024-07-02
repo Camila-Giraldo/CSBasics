@@ -18,9 +18,13 @@ public class TestingEventSubscriber : MonoBehaviour
     private void Testing_OnSpacePressed(object sender, EventArgs e)
     {
         Debug.Log("Space pressed from TestingEventSubscriber");
-        testingEvents = GetComponent<TestingEvents>();
+        /*testingEvents = GetComponent<TestingEvents>();
         // Unsubscribe to the event
-        testingEvents.OnSpacePressed -= Testing_OnSpacePressed;
+        testingEvents.OnSpacePressed -= Testing_OnSpacePressed;*/
+    }
+
+    public void TestingUnityEvent(){
+        Debug.Log("Unity Event from TestingEventSubscriber");
     }
 
     // Update is called once per frame

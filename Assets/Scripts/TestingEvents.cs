@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TestingEvents : MonoBehaviour
 {
     // Creating an event
     public event EventHandler OnSpacePressed;
+
+    public UnityEvent OnUnityEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +40,8 @@ public class TestingEvents : MonoBehaviour
 
             // Other way to check if there are any subscribers to the event and invoke it
             OnSpacePressed?.Invoke(this, EventArgs.Empty);
+
+            OnUnityEvent?.Invoke();
         }
     }
 }
