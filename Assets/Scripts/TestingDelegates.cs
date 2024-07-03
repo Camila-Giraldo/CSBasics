@@ -26,11 +26,25 @@ public class TestingDelegates : MonoBehaviour
         //testDelegateFunction();
 
         testBoolDelegate = TestBoolFunction;
-        Debug.Log(testBoolDelegate(-4));
+        //Debug.Log(testBoolDelegate(-4));
 
-        // Anonymous function with no parameters
-        testDelegateFunction += delegate () { Debug.Log("Anonymous function called"); };
+        // Anonymous function with no parameters and return type
+        testDelegateFunction = delegate () { Debug.Log("Anonymous function called"); };
         //testDelegateFunction();
+
+        // Lambda expression with no parameters and return type
+        testDelegateFunction -= MyDelegateFunction;
+        testDelegateFunction += () => { Debug.Log("Lambda expression called"); };
+        //testDelegateFunction();
+
+        testBoolDelegate -= TestBoolFunction;
+        // Lambda expression with parameters and return type
+        testBoolDelegate -= (int i) => { return i > 0; };
+
+        // Other way to do it
+        testBoolDelegate += (int i) => i > 0;
+        
+        Debug.Log(testBoolDelegate(-4));
     }
 
     // Function to be assigned to the delegate(testDelegateFunction) 
