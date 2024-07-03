@@ -7,7 +7,10 @@ public class TestingDelegates : MonoBehaviour
     // Delegate declaratino with no parameters and return type
     public delegate void TestDelegate();
     // Field of type delegate declared above
+    public delegate bool TestBoolDelegate(int i);
+    private TestBoolDelegate testBoolDelegate;
     private TestDelegate testDelegateFunction;
+
     private void Start()
     {
         // Assigning the function to the delegate
@@ -16,11 +19,18 @@ public class TestingDelegates : MonoBehaviour
         testDelegateFunction += SecondDelegateFunction;
 
         // Calling the delegate. Activates all the functions assigned to it
-        testDelegateFunction();
+        //testDelegateFunction();
 
         // Removing a function from the delegate
         testDelegateFunction -= SecondDelegateFunction;
-        testDelegateFunction();
+        //testDelegateFunction();
+
+        testBoolDelegate = TestBoolFunction;
+        Debug.Log(testBoolDelegate(-4));
+
+        // Anonymous function with no parameters
+        testDelegateFunction += delegate () { Debug.Log("Anonymous function called"); };
+        //testDelegateFunction();
     }
 
     // Function to be assigned to the delegate(testDelegateFunction) 
@@ -33,4 +43,10 @@ public class TestingDelegates : MonoBehaviour
     {
         Debug.Log("Second Delegate function called");
     }
+
+    private bool TestBoolFunction(int i)
+    {
+        return i > 0;
+    }
+
 }
